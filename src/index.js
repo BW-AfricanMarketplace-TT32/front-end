@@ -1,16 +1,13 @@
-import React from 'react'
-import { render } from 'react-dom'
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import { BrowserRouter as Router } from 'react-router-dom';
 
-function App() {
-  return (
-    <h1>African Marketplace</h1>
-  )
-}
-
-
-render(
+ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </React.StrictMode>,
   document.querySelector('#root')
 )
