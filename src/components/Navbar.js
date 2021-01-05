@@ -1,9 +1,29 @@
 import React from "react";
+import styled from "styled-components";
+
+const StyledDiv = styled.div`
+  border: 1px solid black;
+  background-color: black;
+
+  .ul {
+    width: 95%;
+    color: red;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+  }
+
+  .ul a {
+    font-size: 1.25rem;
+    color: white;
+    text-decoration: none;
+  }
+`;
 
 export default function Navbar() {
   return (
-    <div>
-      <ul>
+    <StyledDiv>
+      <ul className="ul">
         <li>
           <a href="/">Home </a>
         </li>
@@ -20,6 +40,6 @@ export default function Navbar() {
           <a href="/login">Logout</a>
         </li>
       </ul>
-    </div>
+    </StyledDiv>
   );
 }
