@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../components/Navbar";
+import '../assets/stylesheets/forms.css'
 
 export default function Register(props) {
   const { submit, values, change, errors, disabled } = props;
@@ -32,28 +33,28 @@ export default function Register(props) {
             />
           </div>
 
-
-          <label>
+          <div className='role'>
+            <label>
+              <input 
+                type='radio'
+                name='admin'
+                value='1'
+                checked={values.admin === '1'}
+                onChange={change}
+              />
+              Merchant
+            </label>
+            <label>
             <input 
-              type='radio'
-              name='admin'
-              value='1'
-              checked={values.admin === '1'}
-              onChange={change}
-            />
-            Merchant
-          </label>
-
-          <label>
-          <input 
-              type='radio'
-              name='admin'
-              value='0'
-              checked={values.admin === '0'}
-              onChange={change}
-            />
-            Customer
-          </label>
+                type='radio'
+                name='admin'
+                value='0'
+                checked={values.admin === '0'}
+                onChange={change}
+              />
+              Customer
+            </label>
+          </div>
 
           {/* Errors */}
           <div className="error">{errors.email}</div>
