@@ -9,3 +9,24 @@ export const setLoggedStatus = status => {
     payload: status
   };
 };
+
+export const setUser = user => {
+  return {
+    type: SET_USER,
+    payload: user
+  };
+};
+
+export const addItem = item => {
+  return {
+    type: ADD_ITEM,
+    payload: item
+  };
+};
+
+export const editItem = item => {
+  return {
+    type: EDIT_ITEM,
+    payload: item
+  };
+};
