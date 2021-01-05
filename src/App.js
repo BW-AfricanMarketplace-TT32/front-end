@@ -1,7 +1,10 @@
 import { React, useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
-import Login from "./Login";
+import PrivateRoute from "./auth/PrivateRoute";
+import Login from "./components/Login";
 import Homepage from "./components/Homepage";
+import Dashboard from "./components/Dashboard";
+
 import * as yup from "yup";
 import loginschema from "./validation/loginschema";
 
@@ -69,6 +72,7 @@ function App() {
         <Route exact path="/">
           <Homepage />
         </Route>
+        <PrivateRoute path="/dashboard" component={Dashboard} />
       </Switch>
     </>
   );
