@@ -9,7 +9,8 @@ import { useHistory } from "react-router-dom";
 import * as yup from "yup";
 import loginschema from "./validation/loginschema";
 import Register from "./components/Register";
-import { axiosWithAuth } from "./auth/axiosWithAuth";
+import axios from "axios";
+// import { axiosWithAuth } from "./auth/axiosWithAuth";
 
 const initialLoginValues = {
   email: "",
@@ -30,25 +31,11 @@ function App() {
     loginschema.isValid(loginValues).then(valid => setLoginDisabled(!valid));
   }, [loginValues]);
 
-  const submit = e => {
-    e.preventDefault();
-    //verify user info
-    axiosWithAuth()
-      .post("/login", loginValues)
-      .then(res => {
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("user_id");
-      })
-      .then(res => {
-        history.push("/dashboard");
-      })
-      .catch(err => {
-        console.log(err, "ERROR SOMETHING IS WRONG");
-      });
-  };
-
   const loginChange = e => {
-    const { name, value } = e.target;
+    // const { name, value } = e.target;
+    const name = e.target.name;
+    const value = e.target.value;
+    console.log(loginValues, "CURRENT LOGIN");
 
     yup
       .reach(loginschema, name)
@@ -70,6 +57,28 @@ function App() {
       ...loginValues,
       [name]: value
     });
+    console.log(loginValues, "vals");
+  };
+
+  const submit = e => {
+    e.preventDefault();
+    //verify user info
+    axios
+      .post(
+        "https://bw-african-marketplace-tt32.herokuapp.com/auth/login",
+        loginValues
+      )
+      .then(res => {
+        // console.log(res, "SUBMITTED RES");
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user_id");
+      })
+      .then(res => {
+        history.push("/dashboard");
+      })
+      .catch(err => {
+        console.log(err, "ERROR SOMETHING IS WRONG");
+      });
   };
 
   return (
