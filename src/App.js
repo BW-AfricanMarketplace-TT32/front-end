@@ -4,10 +4,12 @@ import PrivateRoute from "./auth/PrivateRoute";
 import Login from "./components/Login";
 import Homepage from "./components/Homepage";
 import Dashboard from "./components/Dashboard";
+import axios from "axios";
 
 import * as yup from "yup";
 import loginschema from "./validation/loginschema";
 import Register from "./components/Register";
+import { axiosWithAuth } from "./auth/axiosWithAuth";
 
 const initialLoginValues = {
   email: "",
@@ -30,6 +32,14 @@ function App() {
   const submit = e => {
     e.preventDefault();
     //verify user info
+    axiosWithAuth()
+      .post("/login")
+      .then(res => {
+        console.log(res, "RESULTS OF SUBMIT");
+      })
+      .catch(err => {
+        console.log(err, "ERROR SOMETHING IS WRONG");
+      });
   };
 
   const loginChange = e => {
