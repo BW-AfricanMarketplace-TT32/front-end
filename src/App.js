@@ -7,6 +7,7 @@ import Dashboard from "./components/Dashboard";
 
 import * as yup from "yup";
 import loginschema from "./validation/loginschema";
+import Register from "./components/Register";
 
 const initialLoginValues = {
   email: "",
@@ -72,6 +73,7 @@ function App() {
         <Route exact path="/">
           <Homepage />
         </Route>
+        <Route path="/register" component={Register} />
         <PrivateRoute path="/dashboard" component={Dashboard} />
       </Switch>
     </>

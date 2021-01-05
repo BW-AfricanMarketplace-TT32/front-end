@@ -10,7 +10,7 @@ import Christina from "../images/Christina.jpeg";
 const StyledDiv = styled.div`
   .bodyDiv {
     display: flex;
-    background-color: red;
+    background-color: #b22222;
     height: 100vh;
   }
   .paraDiv {
@@ -38,7 +38,7 @@ const StyledDiv = styled.div`
   }
 
   .paraDiv .team {
-    width: 95%;
+    width: 90%;
     margin-top: 1rem;
     border: 1px solid white;
   }
