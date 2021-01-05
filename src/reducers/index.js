@@ -8,7 +8,7 @@ import {
 
 const initialState = {
   user: null,
-  isLoggedIn: false,
+  isLoggedIn: localStorage.getItem("token") ? true : false,
   items: [],
   isFetching: false,
   error: ""
@@ -16,6 +16,11 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case SET_ITEMS:
+      return {
+        ...state,
+        items: action.payload
+      };
     default:
       return state;
   }

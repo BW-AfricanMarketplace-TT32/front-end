@@ -10,7 +10,6 @@ import * as yup from "yup";
 import loginschema from "./validation/loginschema";
 import Register from "./components/Register";
 import axios from "axios";
-// import { axiosWithAuth } from "./auth/axiosWithAuth";
 
 const initialLoginValues = {
   email: "",
@@ -32,7 +31,6 @@ function App() {
   }, [loginValues]);
 
   const loginChange = e => {
-    // const { name, value } = e.target;
     const name = e.target.name;
     const value = e.target.value;
     console.log(loginValues, "CURRENT LOGIN");
@@ -62,15 +60,15 @@ function App() {
 
   const submit = e => {
     e.preventDefault();
-    //verify user info
     axios
       .post(
         "https://bw-african-marketplace-tt32.herokuapp.com/auth/login",
         loginValues
       )
       .then(res => {
+        console.log(res, "SUBMIT RES");
         localStorage.setItem("token", res.data.token);
-        // localStorage.setItem("user_id");
+        // localStorage.setItem("admin_status", res.data.admin_status);
       })
       .then(() => {
         history.push("/dashboard");
