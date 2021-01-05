@@ -65,6 +65,15 @@ body {
   opacity: 1; 
 }
 
+.role {
+  display: flex;
+  padding: 5px;
+  margin: 12px 0;
+}
+.role label {
+  width: 40%;
+}
+
 /* Button styles */
 #submitBtn {
   width: 100%;
