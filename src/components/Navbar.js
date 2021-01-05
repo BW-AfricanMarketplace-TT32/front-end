@@ -8,6 +8,9 @@ export default function Navbar() {
           <a href="/">Home </a>
         </li>
         <li>
+          <a href="/dashboard">Dashboard</a>
+        </li>
+        <li>
           <a href="/register">Register</a>
         </li>
         <li>
