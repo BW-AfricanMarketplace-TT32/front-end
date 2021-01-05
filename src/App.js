@@ -69,11 +69,10 @@ function App() {
         loginValues
       )
       .then(res => {
-        // console.log(res, "SUBMITTED RES");
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem("user_id");
+        // localStorage.setItem("user_id");
       })
-      .then(res => {
+      .then(() => {
         history.push("/dashboard");
       })
       .catch(err => {
