@@ -10,7 +10,9 @@ import * as yup from "yup";
 import loginschema from "./validation/loginschema";
 import Register from "./components/Register";
 import { axiosWithAuth } from "./auth/axiosWithAuth";
+import registerschema from './validation/registerschema';
 
+//login form initial
 const initialLoginValues = {
   email: "",
   password: ""
@@ -20,11 +22,28 @@ const initialLoginErrors = {
   password: ""
 };
 
+//register form initial
+const initialRegisterValues = {
+  email: "",
+  password: "",
+  admin: '0',
+};
+const initialRegisterErrors = {
+  email: "",
+  password: "",
+  main: "",
+};
+
 function App() {
   const [loginValues, setLoginValues] = useState(initialLoginValues);
   const [loginErrors, setLoginErrors] = useState(initialLoginErrors);
   const [loginDisabled, setLoginDisabled] = useState(true);
+  const [registerValues, setRegisterValues] = useState(initialRegisterValues);
+  const [registerErrors, setRegisterErrors] = useState(initialRegisterErrors);
+  const [registerDisabled, setRegisterDisabled] = useState(true);
 
+
+  //log-in form functions
   useEffect(() => {
     loginschema.isValid(loginValues).then(valid => setLoginDisabled(!valid));
   }, [loginValues]);
@@ -67,6 +86,40 @@ function App() {
     });
   };
 
+  //register form functions
+  useEffect(() => {
+    registerschema.isValid(registerValues).then(valid => setRegisterDisabled(!valid));
+  }, [registerValues]);
+
+  const registerSubmit = e => {
+    e.preventDefault();
+  };
+
+  const registerChange = e => {
+    const { name, value } = e.target;
+
+    yup
+      .reach(registerschema, name)
+      .validate(value)
+      .then(() => {
+        setRegisterErrors({
+          ...registerErrors,
+          [name]: ""
+        });
+      })
+      .catch(err => {
+        setRegisterErrors({
+          ...registerErrors,
+          [name]: err.errors[0]
+        });
+      });
+
+    setRegisterValues({
+      ...registerValues,
+      [name]: value
+    });
+  };
+
   return (
     <>
       <Switch>
@@ -83,7 +136,15 @@ function App() {
         <Route exact path="/">
           <Homepage />
         </Route>
-        <Route path="/register" component={Register} />
+        <Route path="/register">
+          <Register 
+            values={registerValues}
+            submit={registerSubmit}
+            change={registerChange}
+            errors={registerErrors}
+            disabled={registerDisabled}
+          />
+        </Route>
         <PrivateRoute path="/dashboard" component={Dashboard} />
       </Switch>
     </>
