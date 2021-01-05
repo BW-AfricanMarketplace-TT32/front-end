@@ -5,10 +5,10 @@ export default function Login(props) {
   const { values, submit, change, disabled, errors } = props;
 
   return (
-    <div>
+    <div className='login-container'>
       <Navbar />
-      <h2>Log in to your account</h2>
-      <form onSubmit={submit}>
+      <h1>Log in</h1>
+      <form className='text-container' onSubmit={submit}>
         <label>
           Email:
           <input
@@ -16,6 +16,7 @@ export default function Login(props) {
             name="email"
             value={values.email}
             onChange={change}
+            placeholder='johndoe@email.com'
           />
         </label>
         <label>
@@ -25,6 +26,7 @@ export default function Login(props) {
             name="password"
             value={values.password}
             onChange={change}
+            placeholder='secure password'
           />
         </label>
 
