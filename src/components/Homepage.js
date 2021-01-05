@@ -1,11 +1,12 @@
 import React from "react";
 import Navbar from "./Navbar";
-import marketImg from "../images/pic01.jpeg";
 import styled from "styled-components";
-import George from "../images/George.png";
-import Victoria from "../images/Victoria.jpeg";
-import Leah from "../images/Leah.jpeg";
-import Christina from "../images/Christina.jpeg";
+
+import marketImg from "../assets/images/pic01.jpeg";
+import George from '../assets/images/George.png'
+import Victoria from "../assets/images/Victoria.jpeg";
+import Leah from "../assets/images/Leah.jpeg";
+import Christina from "../assets/images/Christina.jpeg";
 
 const StyledDiv = styled.div`
   .bodyDiv {
@@ -82,10 +83,10 @@ export default function Homepage() {
             </div>
             <div className="team">
               <h2>Our Team</h2>
-              <img src={Victoria} />
-              <img src={Christina} />
-              <img src={Leah} />
-              <img src={George} />
+              <img src={Victoria} alt='avatar' />
+              <img src={Christina} alt='avatar' />
+              <img src={Leah} alt='avatar' />
+              <img src={George} alt='avatar' />
             </div>
           </div>
         </div>
