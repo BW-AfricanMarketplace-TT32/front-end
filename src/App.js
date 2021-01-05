@@ -4,7 +4,7 @@ import PrivateRoute from "./auth/PrivateRoute";
 import Login from "./components/Login";
 import Homepage from "./components/Homepage";
 import Dashboard from "./components/Dashboard";
-import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 import * as yup from "yup";
 import loginschema from "./validation/loginschema";
@@ -24,6 +24,7 @@ function App() {
   const [loginValues, setLoginValues] = useState(initialLoginValues);
   const [loginErrors, setLoginErrors] = useState(initialLoginErrors);
   const [loginDisabled, setLoginDisabled] = useState(true);
+  const history = useHistory();
 
   useEffect(() => {
     loginschema.isValid(loginValues).then(valid => setLoginDisabled(!valid));
@@ -33,9 +34,13 @@ function App() {
     e.preventDefault();
     //verify user info
     axiosWithAuth()
-      .post("/login")
+      .post("/login", loginValues)
       .then(res => {
-        console.log(res, "RESULTS OF SUBMIT");
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user_id");
+      })
+      .then(res => {
+        history.push("/dashboard");
       })
       .catch(err => {
         console.log(err, "ERROR SOMETHING IS WRONG");
