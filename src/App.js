@@ -4,13 +4,13 @@ import PrivateRoute from "./auth/PrivateRoute";
 import Login from "./components/Login";
 import Homepage from "./components/Homepage";
 import Dashboard from "./components/Dashboard";
-import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 import * as yup from "yup";
 import loginschema from "./validation/loginschema";
 import Register from "./components/Register";
-import { axiosWithAuth } from "./auth/axiosWithAuth";
-import registerschema from './validation/registerschema';
+import axios from "axios";
+import registerschema from "./validation/registerschema";
 
 //login form initial
 const initialLoginValues = {
@@ -26,43 +26,32 @@ const initialLoginErrors = {
 const initialRegisterValues = {
   email: "",
   password: "",
-  admin: '0',
+  admin: "0"
 };
 const initialRegisterErrors = {
   email: "",
   password: "",
-  main: "",
+  main: ""
 };
 
 function App() {
   const [loginValues, setLoginValues] = useState(initialLoginValues);
   const [loginErrors, setLoginErrors] = useState(initialLoginErrors);
   const [loginDisabled, setLoginDisabled] = useState(true);
+  const history = useHistory();
   const [registerValues, setRegisterValues] = useState(initialRegisterValues);
   const [registerErrors, setRegisterErrors] = useState(initialRegisterErrors);
   const [registerDisabled, setRegisterDisabled] = useState(true);
-
 
   //log-in form functions
   useEffect(() => {
     loginschema.isValid(loginValues).then(valid => setLoginDisabled(!valid));
   }, [loginValues]);
 
-  const submit = e => {
-    e.preventDefault();
-    //verify user info
-    axiosWithAuth()
-      .post("/login")
-      .then(res => {
-        console.log(res, "RESULTS OF SUBMIT");
-      })
-      .catch(err => {
-        console.log(err, "ERROR SOMETHING IS WRONG");
-      });
-  };
-
   const loginChange = e => {
-    const { name, value } = e.target;
+    const name = e.target.name;
+    const value = e.target.value;
+    console.log(loginValues, "CURRENT LOGIN");
 
     yup
       .reach(loginschema, name)
@@ -84,11 +73,34 @@ function App() {
       ...loginValues,
       [name]: value
     });
+    console.log(loginValues, "vals");
+  };
+
+  const submit = e => {
+    e.preventDefault();
+    axios
+      .post(
+        "https://bw-african-marketplace-tt32.herokuapp.com/auth/login",
+        loginValues
+      )
+      .then(res => {
+        console.log(res, "SUBMIT RES");
+        localStorage.setItem("token", res.data.token);
+        // localStorage.setItem("admin_status", res.data.admin_status);
+      })
+      .then(() => {
+        history.push("/dashboard");
+      })
+      .catch(err => {
+        console.log(err, "ERROR SOMETHING IS WRONG");
+      });
   };
 
   //register form functions
   useEffect(() => {
-    registerschema.isValid(registerValues).then(valid => setRegisterDisabled(!valid));
+    registerschema
+      .isValid(registerValues)
+      .then(valid => setRegisterDisabled(!valid));
   }, [registerValues]);
 
   const registerSubmit = e => {
@@ -137,7 +149,7 @@ function App() {
           <Homepage />
         </Route>
         <Route path="/register">
-          <Register 
+          <Register
             values={registerValues}
             submit={registerSubmit}
             change={registerChange}
