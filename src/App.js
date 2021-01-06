@@ -5,12 +5,13 @@ import Login from "./components/Login";
 import Homepage from "./components/Homepage";
 import Dashboard from "./components/Dashboard";
 import { useHistory } from "react-router-dom";
-
 import * as yup from "yup";
 import loginschema from "./validation/loginschema";
 import Register from "./components/Register";
 import axios from "axios";
 import registerschema from "./validation/registerschema";
+import { connect } from "react-redux";
+import { setLoggedStatus } from "./actions";
 
 //login form initial
 const initialLoginValues = {
@@ -26,7 +27,7 @@ const initialLoginErrors = {
 const initialRegisterValues = {
   email: "",
   password: "",
-  admin: "0"
+  admin_status: 0
 };
 const initialRegisterErrors = {
   email: "",
@@ -51,7 +52,6 @@ function App() {
   const loginChange = e => {
     const name = e.target.name;
     const value = e.target.value;
-    console.log(loginValues, "CURRENT LOGIN");
 
     yup
       .reach(loginschema, name)
@@ -84,12 +84,12 @@ function App() {
         loginValues
       )
       .then(res => {
-        console.log(res, "SUBMIT RES");
         localStorage.setItem("token", res.data.token);
-        // localStorage.setItem("admin_status", res.data.admin_status);
+        setLoggedStatus(true);
       })
       .then(() => {
         history.push("/dashboard");
+        window.location.reload();
       })
       .catch(err => {
         console.log(err, "ERROR SOMETHING IS WRONG");
@@ -103,13 +103,11 @@ function App() {
       .then(valid => setRegisterDisabled(!valid));
   }, [registerValues]);
 
-  const registerSubmit = e => {
-    e.preventDefault();
-  };
-
   const registerChange = e => {
-    const { name, value } = e.target;
+    const name = e.target.name;
+    const value = e.target.value;
 
+    console.log(e.target.value, "CHANGE VALUES");
     yup
       .reach(registerschema, name)
       .validate(value)
@@ -130,6 +128,26 @@ function App() {
       ...registerValues,
       [name]: value
     });
+  };
+
+  const registerSubmit = e => {
+    e.preventDefault();
+    axios
+      .post(
+        "https://bw-african-marketplace-tt32.herokuapp.com/auth/register",
+        registerValues
+      )
+      .then(() => {
+        setRegisterValues({
+          email: "",
+          password: "",
+          admin_status: 0
+        });
+        history.push("/login");
+      })
+      .catch(err => {
+        console.log(err, "NOPE ERROR IN REGISTRATION");
+      });
   };
 
   return (
@@ -163,4 +181,8 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = state => ({
+  isLoggedIn: state.isLoggedIn
+});
+
+export default connect(mapStateToProps, { setLoggedStatus })(App);

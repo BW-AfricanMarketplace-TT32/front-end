@@ -21,6 +21,11 @@ export const reducer = (state = initialState, action) => {
         ...state,
         items: action.payload
       };
+    case SET_LOGGED_STATUS:
+      return {
+        ...state,
+        isLoggedIn: action.payload
+      };
     default:
       return state;
   }
