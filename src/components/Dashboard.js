@@ -104,7 +104,7 @@ function Dashboard(props) {
 
   function deleteItem(id) {
     axiosWithAuth()
-      .delete(`items/${id}`, id)
+      .delete(`items/${id}`)
       .then(res => {
         setItems(
           props.items.filter(item => {
