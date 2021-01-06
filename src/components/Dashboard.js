@@ -9,6 +9,10 @@ const StyledDiv = styled.div`
   color: black;
   font-size: 2rem;
 
+  h4 {
+    color: white;
+    margin-left: 2rem;
+  }
   .welcome h2 {
     color: white;
     margin-left: 2rem;
@@ -17,6 +21,20 @@ const StyledDiv = styled.div`
   .welcome {
     color: white;
   }
+
+  .category {
+    color: white;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .eachCategory {
+    border: 1px solid white;
+    width: 20%;
+    text-align: center;
+  }
+
   .bigItemDiv {
     height: 90vh;
     display: flex;
@@ -26,8 +44,9 @@ const StyledDiv = styled.div`
   }
 
   .smallItemDiv {
-    width: 40%;
-    height: 40%;
+    width: 20%;
+    height: 30%;
+    font-size: 1.25rem;
     border: 1px solid red;
     background-color: white;
     opacity: 0.7;
@@ -44,7 +63,6 @@ const StyledDiv = styled.div`
 `;
 
 function Dashboard(props) {
-  console.log(props, "PROPS");
   useEffect(() => {
     axiosWithAuth()
       .get("items/categories/list")
@@ -105,20 +123,23 @@ function Dashboard(props) {
         <h2>Welcome back!</h2>
         <p> Add item form goes here **** </p>{" "}
       </div>
-      <div>
+      <h4>Categories available:</h4>
+      <div className="category">
         {props.categories.map(category => {
           return (
-            <div>
+            <div className="eachCategory" key={category.category_id}>
               <p>{category.category_name}</p>
             </div>
           );
         })}
       </div>
+      <h4>Your Items:</h4>
       <div className="bigItemDiv">
         {props.items.map(item => {
           return (
             <div key={item.item_id} className="smallItemDiv">
               <p>{item.item_name}</p>
+              <p>Category: {item.category_name}</p>
               <p>${item.item_price}</p>
               <button className="btn">Edit</button>
               <button
