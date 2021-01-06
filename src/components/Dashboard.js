@@ -23,7 +23,7 @@ function Dashboard(props) {
       <div>
         {props.items.map(item => {
           return (
-            <div>
+            <div key={item.item_id} className="itemDiv">
               <p>{item.item_name}</p>
             </div>
           );
