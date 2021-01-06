@@ -21,18 +21,20 @@ function Dashboard(props) {
     <div>
       <Navbar />
       <div>
-        {/* {props.state.items.map(item => {
+        {props.items.map(item => {
           return (
             <div>
               <p>{item.item_name}</p>
             </div>
           );
-        })} */}
+        })}
       </div>
     </div>
   );
 }
 
-const mapStateToProps = state => console.log(state, "MAP STATE:");
+const mapStateToProps = state => ({
+  items: state.items
+});
 
 export default connect(mapStateToProps, { setItems })(Dashboard);
