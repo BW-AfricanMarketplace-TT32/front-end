@@ -11,6 +11,8 @@ import loginschema from "./validation/loginschema";
 import Register from "./components/Register";
 import axios from "axios";
 import registerschema from "./validation/registerschema";
+import { connect } from "react-redux";
+import { setLoggedStatus } from "./actions";
 
 //login form initial
 const initialLoginValues = {
@@ -85,6 +87,7 @@ function App() {
       .then(res => {
         console.log(res, "SUBMIT RES");
         localStorage.setItem("token", res.data.token);
+        setLoggedStatus(true);
         // localStorage.setItem("admin_status", res.data.admin_status);
       })
       .then(() => {
@@ -180,4 +183,4 @@ function App() {
   );
 }
 
-export default App;
+export default connect(null, { setLoggedStatus })(App);
