@@ -37,9 +37,9 @@ export default function Register(props) {
             <label>
               <input
                 type="radio"
-                name="admin"
+                name="admin_status"
                 value="1"
-                checked={values.admin === "1"}
+                checked={true}
                 onChange={change}
               />
               Merchant
@@ -47,9 +47,9 @@ export default function Register(props) {
             <label>
               <input
                 type="radio"
-                name="admin"
+                name="admin_status"
                 value="0"
-                checked={values.admin === "0"}
+                checked={true}
                 onChange={change}
               />
               Customer

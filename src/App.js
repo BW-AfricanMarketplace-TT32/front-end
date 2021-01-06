@@ -26,7 +26,7 @@ const initialLoginErrors = {
 const initialRegisterValues = {
   email: "",
   password: "",
-  admin: "0"
+  admin_status: 0
 };
 const initialRegisterErrors = {
   email: "",
@@ -102,29 +102,11 @@ function App() {
       .then(valid => setRegisterDisabled(!valid));
   }, [registerValues]);
 
-  const registerSubmit = e => {
-    e.preventDefault();
-    axios
-      .post(
-        "https://bw-african-marketplace-tt32.herokuapp.com/auth/register",
-        registerValues
-      )
-      .then(res => {
-        setRegisterValues({
-          email: "",
-          password: ""
-        });
-        history.push("/login");
-      })
-      .catch(err => {
-        console.log(err, "NOPE ERROR IN REGISTRATION");
-      });
-  };
-
   const registerChange = e => {
     const name = e.target.name;
     const value = e.target.value;
 
+    console.log(e.target.value, "CHANGE VALUES");
     yup
       .reach(registerschema, name)
       .validate(value)
@@ -145,6 +127,26 @@ function App() {
       ...registerValues,
       [name]: value
     });
+  };
+
+  const registerSubmit = e => {
+    e.preventDefault();
+    axios
+      .post(
+        "https://bw-african-marketplace-tt32.herokuapp.com/auth/register",
+        registerValues
+      )
+      .then(() => {
+        setRegisterValues({
+          email: "",
+          password: "",
+          admin_status: 0
+        });
+        history.push("/login");
+      })
+      .catch(err => {
+        console.log(err, "NOPE ERROR IN REGISTRATION");
+      });
   };
 
   return (
