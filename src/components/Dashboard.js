@@ -8,7 +8,6 @@ import styled from "styled-components";
 const StyledDiv = styled.div`
   color: black;
   font-size: 2rem;
-  text-shadow: 2px 2px white;
 
   .bigItemDiv {
     border: 1px solid black;
@@ -36,6 +35,10 @@ const StyledDiv = styled.div`
     font-size: 1rem;
   }
 `;
+
+// function deleteItem(){
+//add this to an onClick for buttons
+// }
 
 function Dashboard(props) {
   useEffect(() => {
