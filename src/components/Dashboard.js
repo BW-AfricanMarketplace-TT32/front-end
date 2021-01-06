@@ -13,6 +13,10 @@ const StyledDiv = styled.div`
     color: white;
     margin-left: 2rem;
   }
+
+  .welcome {
+    color: white;
+  }
   .bigItemDiv {
     height: 90vh;
     display: flex;
@@ -48,13 +52,28 @@ function Dashboard(props) {
         console.log(res.data, "RESULTS  HERE!!!");
       })
       .catch(err => {
-        console.log(err, "NOPE TRY AGAIN");
+        console.log("DASHBOARD ERROR:", err);
       });
   }, []);
 
+  //this item gets added to onclick for add item form
+  // function addItem() {
+  //   axiosWithAuth()
+  //     .post("items", newItemFormValsVariable)
+  //     .then(res => {
+  //       console.log(res);
+  //       setFormVals({
+  //         name: "",
+  //         description: "",
+  //         price: ""
+  //       });
+  //     })
+  //     .catch(err => {
+  //       console.log("ADD ITEM ERROR:", err);
+  //     });
+  // }
+
   function deleteItem(id) {
-    // console.log(id); this works
-    console.log("PROPS:", props);
     axiosWithAuth()
       .delete(`items/${id}`, id)
       .then(res => {
@@ -65,7 +84,7 @@ function Dashboard(props) {
         );
       })
       .catch(err => {
-        console.log(err, "NOPE NOPE NOPE");
+        console.log("DELETE ITEM ERROR:", err);
       });
   }
   return (
@@ -73,6 +92,7 @@ function Dashboard(props) {
       <Navbar />
       <div className="welcome">
         <h2>Welcome back!</h2>
+        <p> Add item form goes here **** </p>{" "}
       </div>
       <div className="bigItemDiv">
         {props.items.map(item => {
