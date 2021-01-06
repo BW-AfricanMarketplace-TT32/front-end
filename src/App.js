@@ -85,10 +85,8 @@ function App() {
         loginValues
       )
       .then(res => {
-        console.log(res, "SUBMIT RES");
         localStorage.setItem("token", res.data.token);
         setLoggedStatus(true);
-        // localStorage.setItem("admin_status", res.data.admin_status);
       })
       .then(() => {
         history.push("/dashboard");

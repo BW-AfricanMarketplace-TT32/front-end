@@ -54,9 +54,6 @@ function Navbar(props) {
             <li>
               <a href="/login">Login</a>
             </li>
-            <li>
-              <a href="/login">Logout</a>
-            </li>
           </ul>
         </StyledDiv>
       )}
