@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import { setLoggedStatus } from "../actions";
 
@@ -23,6 +24,14 @@ const StyledDiv = styled.div`
 `;
 
 function Navbar(props) {
+  const history = useHistory();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    props.setLoggedStatus(false);
+    history.push("/login");
+  };
+
   return (
     <div>
       {props.isLoggedIn ? (
@@ -35,7 +44,7 @@ function Navbar(props) {
               <a href="/dashboard">Dashboard</a>
             </li>
             <li>
-              <a href="#">Log Out</a>
+              <a onClick={handleLogout}>Log Out</a>
             </li>
           </ul>
         </StyledDiv>

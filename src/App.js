@@ -181,4 +181,8 @@ function App() {
   );
 }
 
-export default connect(null, { setLoggedStatus })(App);
+const mapStateToProps = state => ({
+  isLoggedIn: state.isLoggedIn
+});
+
+export default connect(mapStateToProps, { setLoggedStatus })(App);
