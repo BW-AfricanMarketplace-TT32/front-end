@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { axiosWithAuth } from "../auth/axiosWithAuth";
 import Navbar from "./Navbar";
 import { connect } from "react-redux";
-import { setItems } from "../actions";
+import { setItems, setCategories } from "../actions";
 import styled from "styled-components";
 
 const StyledDiv = styled.div`
@@ -44,7 +44,18 @@ const StyledDiv = styled.div`
 `;
 
 function Dashboard(props) {
+  console.log(props, "PROPS");
   useEffect(() => {
+    axiosWithAuth()
+      .get("items/categories/list")
+      .then(res => {
+        props.setCategories(res.data);
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err, "GET REQUEST ERROR");
+      });
+
     axiosWithAuth()
       .get("items")
       .then(res => {
@@ -94,6 +105,15 @@ function Dashboard(props) {
         <h2>Welcome back!</h2>
         <p> Add item form goes here **** </p>{" "}
       </div>
+      <div>
+        {props.categories.map(category => {
+          return (
+            <div>
+              <p>{category.category_name}</p>
+            </div>
+          );
+        })}
+      </div>
       <div className="bigItemDiv">
         {props.items.map(item => {
           return (
@@ -118,7 +138,8 @@ function Dashboard(props) {
 }
 
 const mapStateToProps = state => ({
+  categories: state.categories,
   items: state.items
 });
 
-export default connect(mapStateToProps, { setItems })(Dashboard);
+export default connect(mapStateToProps, { setItems, setCategories })(Dashboard);

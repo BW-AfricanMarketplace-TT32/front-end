@@ -3,6 +3,7 @@ export const SET_ITEMS = "SET_ITEMS";
 export const SET_USER = "SET_USER";
 export const ADD_ITEM = "ADD_ITEM";
 export const EDIT_ITEM = "EDIT_ITEM";
+export const SET_CATEGORIES = "SET_CATEGORIES";
 
 export const setLoggedStatus = status => {
   return {
@@ -36,5 +37,12 @@ export const editItem = item => {
   return {
     type: EDIT_ITEM,
     payload: item
+  };
+};
+
+export const setCategories = categories => {
+  return {
+    type: SET_CATEGORIES,
+    payload: categories
   };
 };
