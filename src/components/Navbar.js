@@ -28,6 +28,9 @@ export default function Navbar() {
           <a href="/">Home </a>
         </li>
         <li>
+          <a href='/market'>Market</a>
+        </li>
+        <li>
           <a href="/dashboard">Dashboard</a>
         </li>
         <li>
