@@ -3,6 +3,39 @@ import { axiosWithAuth } from "../auth/axiosWithAuth";
 import Navbar from "./Navbar";
 import { connect } from "react-redux";
 import { setItems } from "../actions";
+import styled from "styled-components";
+
+const StyledDiv = styled.div`
+  color: black;
+  font-size: 2rem;
+  text-shadow: 2px 2px white;
+
+  .bigItemDiv {
+    border: 1px solid black;
+    height: 90vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .smallItemDiv {
+    width: 40%;
+    height: 40%;
+    border: 1px solid red;
+    background-color: white;
+    opacity: 0.7;
+    text-align: center;
+  }
+
+  .smallItemDiv .btn {
+    opacity: 2;
+    color: white;
+    background-color: black;
+    padding: 0.5rem;
+    font-size: 1rem;
+  }
+`;
 
 function Dashboard(props) {
   useEffect(() => {
@@ -18,18 +51,21 @@ function Dashboard(props) {
   }, []);
 
   return (
-    <div>
+    <StyledDiv>
       <Navbar />
-      <div>
+      <div className="bigItemDiv">
         {props.items.map(item => {
           return (
-            <div key={item.item_id} className="itemDiv">
+            <div key={item.item_id} className="smallItemDiv">
               <p>{item.item_name}</p>
+              <p>${item.item_price}</p>
+              <button className="btn">Edit</button>
+              <button className="btn">Delete</button>
             </div>
           );
         })}
       </div>
-    </div>
+    </StyledDiv>
   );
 }
 
