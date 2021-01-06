@@ -9,8 +9,11 @@ const StyledDiv = styled.div`
   color: black;
   font-size: 2rem;
 
+  .welcome h2 {
+    color: white;
+    margin-left: 2rem;
+  }
   .bigItemDiv {
-    border: 1px solid black;
     height: 90vh;
     display: flex;
     flex-wrap: wrap;
@@ -36,10 +39,6 @@ const StyledDiv = styled.div`
   }
 `;
 
-// function deleteItem(){
-//add this to an onClick for buttons
-// }
-
 function Dashboard(props) {
   useEffect(() => {
     axiosWithAuth()
@@ -53,9 +52,28 @@ function Dashboard(props) {
       });
   }, []);
 
+  function deleteItem(id) {
+    // console.log(id); this works
+    console.log("PROPS:", props);
+    axiosWithAuth()
+      .delete(`items/${id}`, id)
+      .then(res => {
+        setItems(
+          props.items.filter(item => {
+            return item.item_id !== id;
+          })
+        );
+      })
+      .catch(err => {
+        console.log(err, "NOPE NOPE NOPE");
+      });
+  }
   return (
     <StyledDiv>
       <Navbar />
+      <div className="welcome">
+        <h2>Welcome back!</h2>
+      </div>
       <div className="bigItemDiv">
         {props.items.map(item => {
           return (
@@ -63,7 +81,14 @@ function Dashboard(props) {
               <p>{item.item_name}</p>
               <p>${item.item_price}</p>
               <button className="btn">Edit</button>
-              <button className="btn">Delete</button>
+              <button
+                className="btn"
+                onClick={e => {
+                  deleteItem(item.item_id);
+                }}
+              >
+                Delete
+              </button>
             </div>
           );
         })}

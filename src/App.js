@@ -51,7 +51,6 @@ function App() {
   const loginChange = e => {
     const name = e.target.name;
     const value = e.target.value;
-    console.log(loginValues, "CURRENT LOGIN");
 
     yup
       .reach(loginschema, name)
@@ -105,10 +104,26 @@ function App() {
 
   const registerSubmit = e => {
     e.preventDefault();
+    axios
+      .post(
+        "https://bw-african-marketplace-tt32.herokuapp.com/auth/register",
+        registerValues
+      )
+      .then(res => {
+        setRegisterValues({
+          email: "",
+          password: ""
+        });
+        history.push("/login");
+      })
+      .catch(err => {
+        console.log(err, "NOPE ERROR IN REGISTRATION");
+      });
   };
 
   const registerChange = e => {
-    const { name, value } = e.target;
+    const name = e.target.name;
+    const value = e.target.value;
 
     yup
       .reach(registerschema, name)
