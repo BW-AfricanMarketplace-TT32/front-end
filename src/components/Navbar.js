@@ -29,7 +29,7 @@ function Navbar(props) {
   const handleLogout = () => {
     localStorage.removeItem("token");
     props.setLoggedStatus(false);
-    history.push("/login");
+    history.push("/");
   };
 
   return (
