@@ -89,6 +89,7 @@ function App() {
       })
       .then(() => {
         history.push("/dashboard");
+        window.location.reload();
       })
       .catch(err => {
         console.log(err, "ERROR SOMETHING IS WRONG");
