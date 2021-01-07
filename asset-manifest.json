@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/my-app/static/css/main.a2f9b34e.chunk.css",
+    "main.js": "/my-app/static/js/main.06b4a736.chunk.js",
+    "main.js.map": "/my-app/static/js/main.06b4a736.chunk.js.map",
+    "runtime-main.js": "/my-app/static/js/runtime-main.995cc6a5.js",
+    "runtime-main.js.map": "/my-app/static/js/runtime-main.995cc6a5.js.map",
+    "static/js/2.a74df942.chunk.js": "/my-app/static/js/2.a74df942.chunk.js",
+    "static/js/2.a74df942.chunk.js.map": "/my-app/static/js/2.a74df942.chunk.js.map",
+    "index.html": "/my-app/index.html",
+    "static/css/main.a2f9b34e.chunk.css.map": "/my-app/static/css/main.a2f9b34e.chunk.css.map",
+    "static/js/2.a74df942.chunk.js.LICENSE.txt": "/my-app/static/js/2.a74df942.chunk.js.LICENSE.txt",
+    "static/media/Christina.1aa5dc20.jpeg": "/my-app/static/media/Christina.1aa5dc20.jpeg",
+    "static/media/George.726e9450.png": "/my-app/static/media/George.726e9450.png",
+    "static/media/Leah.51ca807e.jpeg": "/my-app/static/media/Leah.51ca807e.jpeg",
+    "static/media/Victoria.bb5f4d9a.jpeg": "/my-app/static/media/Victoria.bb5f4d9a.jpeg",
+    "static/media/forms.css": "/my-app/static/media/sunset.76874532.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.995cc6a5.js",
+    "static/js/2.a74df942.chunk.js",
+    "static/css/main.a2f9b34e.chunk.css",
+    "static/js/main.06b4a736.chunk.js"
+  ]
+}
