@@ -19,10 +19,13 @@ const StyledDiv = styled.div`
     color: white;
     margin-left: 2rem;
   }
+  ul {
+    margin: 4px 0 14px 0;
+  }
 
   .addItem {
     width: 40%;
-    margin-bottom: 5rem;
+    padding-bottom: 5rem;
     display: flex;
     flex-direction: column;
     padding: 2rem;
@@ -53,7 +56,6 @@ const StyledDiv = styled.div`
   }
 
   .bigItemDiv {
-    height: 90vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -62,12 +64,13 @@ const StyledDiv = styled.div`
 
   .smallItemDiv {
     width: 20%;
-    height: 30%;
+    min-width: 200px;
     font-size: 1rem;
     border: 1px solid red;
     background-color: white;
     opacity: 0.7;
     text-align: center;
+    margin: 10px;
   }
 
   .smallItemDiv .btn {
@@ -76,6 +79,7 @@ const StyledDiv = styled.div`
     background-color: black;
     padding: 0.5rem;
     font-size: 1rem;
+    width: auto;
   }
 `;
 
@@ -229,24 +233,26 @@ function Dashboard(props) {
             </div>
             <div className="input">
               <label>
-                Location id: <br />
-                <input
-                  type="text"
-                  name="location_id"
-                  onChange={onChange}
-                  value={formValues.location_id}
-                />
+                Location: <br />
+                <select name="location_id" value={formValues.location_id} onChange={onChange}>
+                  <option value="">- Select an option -</option>
+                  <option value={1}>1 - Mombasa</option>
+                  <option value={2}>2 - Nairobi</option>
+                  <option value={3}>3 - Kisii</option>
+                  <option value={4}>4 - Embu</option>
+                </select>
               </label>
             </div>
             <div className="input">
               <label>
-                Category #: <br />
-                <input
-                  type="text"
-                  name="category_id"
-                  onChange={onChange}
-                  value={formValues.category_id}
-                />
+                Category: <br />
+                <select name="category_id" value={formValues.category_id} onChange={onChange}>
+                  <option value="">- Select an option -</option>
+                  <option value={1}>1 - Animal Products</option>
+                  <option value={2}>2 - Dry Goods</option>
+                  <option value={3}>3 - Fruits and Vegetables</option>
+                  <option value={4}>4 - Other</option>
+                </select>
               </label>
             </div>
             <button type="submit">Add Item</button>

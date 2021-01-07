@@ -20,6 +20,7 @@ const StyledDiv = styled.div`
     font-size: 1.25rem;
     color: white;
     text-decoration: none;
+    cursor: pointer;
   }
 `;
 
