@@ -8,52 +8,54 @@ export default function Register(props) {
   return (
     <>
       <Navbar />
-      <div className="login-container">
-        <h1>Register</h1>
-        <form onSubmit={submit}>
-          <div className="input-container">
-            <i class="fas fa-user"></i>
-            <input
-              type="email"
-              name="email"
-              value={values.email}
-              onChange={change}
-              placeholder="johndoe@email.com"
-            />
-          </div>
-
-          <div className="input-container">
-            <i class="fas fa-lock"></i>
-            <input
-              type="password"
-              name="password"
-              value={values.password}
-              onChange={change}
-              placeholder="secure password"
-            />
-          </div>
-
-          <div className="role">
-            <label>
+      <div className='bg-container'>
+        <div className="login-container">
+          <h1>Register</h1>
+          <form onSubmit={submit}>
+            <div className="input-container">
+              <i class="fas fa-user"></i>
               <input
-                type="radio"
-                name="admin_status"
-                value="1"
-                checked={true}
+                type="email"
+                name="email"
+                value={values.email}
                 onChange={change}
-                placeholder='johndoe@email.com'
+                placeholder="johndoe@email.com"
               />
-              Merchant
-            </label>
-            <label>
+            </div>
+
+            <div className="input-container">
+              <i class="fas fa-lock"></i>
               <input
-                type="radio"
-                name="admin_status"
-                value="0"
-                checked={true}
+                type="password"
+                name="password"
+                value={values.password}
                 onChange={change}
-                placeholder='secure password'
+                placeholder="secure password"
               />
+            </div>
+
+            <div className="role">
+              <label>
+                <input
+                  type="radio"
+                  name="admin_status"
+                  value="1"
+                  checked={true}
+                  onChange={change}
+                  placeholder='johndoe@email.com'
+                />
+                Merchant
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="admin_status"
+                  value="0"
+                  checked={true}
+                  onChange={change}
+                  placeholder='secure password'
+                />
+              </label>
             </div>
 
             <div className='role'>
@@ -65,8 +67,8 @@ export default function Register(props) {
                   checked={values.admin === '1'}
                   onChange={change}
                 />
-                Merchant
-              </label>
+                  Merchant
+                </label>
               <label>
                 <input
                   type='radio'
@@ -75,8 +77,8 @@ export default function Register(props) {
                   checked={values.admin === '0'}
                   onChange={change}
                 />
-                Customer
-              </label>
+                  Customer
+                </label>
             </div>
 
             {/* Errors */}
