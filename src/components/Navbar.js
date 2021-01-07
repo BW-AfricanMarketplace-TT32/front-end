@@ -33,13 +33,15 @@ function Navbar(props) {
   };
 
   return (
-
     <div>
       {props.isLoggedIn ? (
         <StyledDiv>
           <ul className="ul">
             <li>
               <a href="/">Home</a>
+            </li>
+            <li>
+              <a href='/market'>Market</a>
             </li>
             <li>
               <a href="/dashboard">Dashboard</a>
@@ -50,23 +52,26 @@ function Navbar(props) {
           </ul>
         </StyledDiv>
       ) : (
-        <StyledDiv>
-          <ul className="ul">
-            <li>
-              <a href="/">Home </a>
-            </li>
-            <li>
-              <a href="/dashboard">Dashboard</a>
-            </li>
-            <li>
-              <a href="/register">Register</a>
-            </li>
-            <li>
-              <a href="/login">Login</a>
-            </li>
-          </ul>
-        </StyledDiv>
-      )}
+          <StyledDiv>
+            <ul className="ul">
+              <li>
+                <a href="/">Home </a>
+              </li>
+              <li>
+                <a href='/market'>Market</a>
+              </li>
+              <li>
+                <a href="/dashboard">Dashboard</a>
+              </li>
+              <li>
+                <a href="/register">Register</a>
+              </li>
+              <li>
+                <a href="/login">Login</a>
+              </li>
+            </ul>
+          </StyledDiv>
+        )}
     </div>
   );
 }
