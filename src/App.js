@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import PrivateRoute from "./auth/PrivateRoute";
 import Login from "./components/Login";
 import Homepage from "./components/Homepage";
+import Market from './components/Market.js'
 import Dashboard from "./components/Dashboard";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
@@ -12,6 +13,7 @@ import axios from "axios";
 import registerschema from "./validation/registerschema";
 import { connect } from "react-redux";
 import { setLoggedStatus } from "./actions";
+import data from './data/data.js'
 
 //login form initial
 const initialLoginValues = {
@@ -43,6 +45,9 @@ function App() {
   const [registerValues, setRegisterValues] = useState(initialRegisterValues);
   const [registerErrors, setRegisterErrors] = useState(initialRegisterErrors);
   const [registerDisabled, setRegisterDisabled] = useState(true);
+
+  const { products } = data
+  const [cartItems, setCartItems] = useState([])
 
   //log-in form functions
   useEffect(() => {
@@ -153,6 +158,11 @@ function App() {
   return (
     <>
       <Switch>
+
+        <Route path='/market'>
+          <Market products={products} cartItems={cartItems} />
+        </Route>
+
         <Route path="/login">
           <Login
             values={loginValues}
