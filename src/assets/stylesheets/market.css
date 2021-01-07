@@ -79,13 +79,26 @@ button.delete {
   width: 1.5rem;
 }
 
+.text-right {
+  text-align: right;
+}
+
+/* Cart Items Badge */
+.badge-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 button.badge {
   background-color: #f04040;
   border: none;
   color: #fff;
-  width: 1.5rem;
-}
-
-.text-right {
-  text-align: right;
+  width: 1.7rem;
+  height: 1.7rem;
+  position: relative;
+  right: 25px;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  font-size: 1rem;
 }

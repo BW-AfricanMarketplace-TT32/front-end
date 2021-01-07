@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function Cart(props) {
-  const { cartItems, onAdd, onDelete } = props
+  const { countCartItems, cartItems, onAdd, onDelete } = props
 
   // Calculate subtotal of cart using reduce()
   const itemsCost = cartItems.reduce((accumulator, item) => accumulator + item.price * item.qty, 0)
@@ -9,7 +9,13 @@ export default function Cart(props) {
   return (
     <>
       <aside className='block col-1'>
-        <h2>Cart Items</h2>
+        <div className='badge-container'>
+          <h2>Cart Items</h2>
+          {countCartItems ? (
+            <button className='badge'>{countCartItems}</button>
+          ) : ('')
+          }
+        </div>
         <div>
           {cartItems.length === 0 && <div>Cart is empty</div>}
 

@@ -7,7 +7,7 @@ import '../assets/stylesheets/market.css'
 
 
 export default function Market(props) {
-  const { products, cartItems, onAdd, onDelete } = props
+  const { products, cartItems, onAdd, onDelete, countCartItems } = props
 
   return (
     <>
@@ -26,7 +26,12 @@ export default function Market(props) {
         </div>
 
         {/* passing cartItems from props - Market received from App.js */}
-        <Cart onDelete={onDelete} onAdd={onAdd} cartItems={cartItems} />
+        <Cart
+          onDelete={onDelete}
+          onAdd={onAdd}
+          cartItems={cartItems}
+          countCartItems={countCartItems}
+        />
       </main>
     </>
   )

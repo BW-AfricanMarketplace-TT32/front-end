@@ -196,6 +196,7 @@ function App() {
             onAdd={onAdd}
             products={products}
             cartItems={cartItems}
+            countCartItems={cartItems.length}
           />
         </Route>
 
