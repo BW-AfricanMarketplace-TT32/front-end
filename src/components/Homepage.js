@@ -1,8 +1,6 @@
 import React from "react";
 import Navbar from "./Navbar";
 import styled from "styled-components";
-
-import marketImg from "../assets/images/pic01.jpeg";
 import George from "../assets/images/George.png";
 import Victoria from "../assets/images/Victoria.jpeg";
 import Leah from "../assets/images/Leah.jpeg";
@@ -10,54 +8,65 @@ import Christina from "../assets/images/Christina.jpeg";
 
 const StyledDiv = styled.div`
   .bodyDiv {
-    display: flex;
     background-color: #b22222;
-    height: 100vh;
+    color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
   .paraDiv {
     text-align: center;
-    width: 45%;
-    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding-bottom: 50px;
   }
-  .paraDiv h1 {
+  h1 {
     letter-spacing: 0.65rem;
     text-shadow: 2px 2px black;
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 0 0 5% 0;
+    font-size: 36px;
+  }
+  .paraDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
   }
   .paraDiv .sections {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 40%;
+    min-width: 400px;
   }
-  .paraDiv .about {
-    width: 50%;
-    border: 1px solid white;
-  }
-  .paraDiv .services {
-    width: 50%;
-    margin-top: 1rem;
-    border: 1px solid white;
-  }
-
-  .paraDiv .team {
-    width: 90%;
-    margin-top: 1rem;
-    border: 1px solid white;
-  }
-
-  .team img {
-    width: 20%;
-    border-radius: 100%;
-  }
-
-  .imgDiv {
-    width: 45%;
+  .sections {
     display: flex;
-    align-items: center;
-    margin: 0 auto;
+    flex-direction: column;
   }
-  .imgDiv img {
+  .sections div {
+    border: 1px solid white;
     width: 100%;
-    height: auto;
+    background: rgba(0, 0, 0, .5);
+    margin: 10px;
+    padding: 10% 10px;
+  }
+  .team {
+    border: 1px solid white;
+    width: 40%;
+    min-width: 400px;
+    background: rgba(0, 0, 0, .5);
+    margin: 10px;
+  }
+  .team img {
+    width: 35%;
+    border-radius: 100%;
+    padding: 5px;
   }
 `;
 
@@ -66,8 +75,8 @@ export default function Homepage() {
     <StyledDiv>
       <Navbar />
       <div className="bodyDiv">
+        <h1>African Marketplace</h1>
         <div className="paraDiv">
-          <h1>African Marketplace</h1>
           <div className="sections">
             <div className="about">
               <h2>About Us</h2>
@@ -81,17 +90,14 @@ export default function Homepage() {
               <h2>Services</h2>
               <p>Centralized online market for both vendors and customers.</p>
             </div>
-            <div className="team">
+          </div>
+          <div className="team">
               <h2>Our Team</h2>
               <img src={Victoria} alt="avatar" />
               <img src={Christina} alt="avatar" />
               <img src={Leah} alt="avatar" />
               <img src={George} alt="avatar" />
-            </div>
           </div>
-        </div>
-        <div className="imgDiv">
-          <img src={marketImg} alt="marketplace" />
         </div>
       </div>
     </StyledDiv>
