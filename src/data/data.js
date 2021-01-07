@@ -15,11 +15,25 @@ const data = {
         'https://image.freepik.com/free-photo/close-up-view-some-red-apples-isolated-white-background_69593-1582.jpg'
     },
     {
-      name: 'Potatoes (1kg)',
+      name: 'Potatoes (5kg)',
       id: 2,
-      price: 9.33,
+      price: 46.65,
       imgURL:
         'https://image.freepik.com/free-photo/fresh-potatoes-isolated-white-background_33736-2512.jpg'
+    },
+    {
+      name: 'Bananas (2kg)',
+      id: 3,
+      price: 42.48,
+      imgURL:
+        'https://upload.wikimedia.org/wikipedia/commons/a/aa/Bananas_%28white_background%29.jpg'
+    },
+    {
+      name: 'Avocados (3kg)',
+      id: 4,
+      price: 38.21,
+      imgURL:
+        'https://www.seekpng.com/png/detail/14-147195_avocado-png-image-avocado-with-white-background.png'
     }
   ]
 }
