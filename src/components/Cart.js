@@ -3,6 +3,9 @@ import React from 'react'
 export default function Cart(props) {
   const { cartItems, onAdd, onDelete } = props
 
+  // Calculate subtotal of cart using reduce()
+  const itemsCost = cartItems.reduce((accumulator, item) => accumulator + item.price * item.qty, 0)
+
   return (
     <>
       <aside className='block col-1'>
@@ -25,6 +28,15 @@ export default function Cart(props) {
               </div>
             </div>
           ))}
+          {cartItems.length !== 0 && (
+            <>
+              <hr></hr>
+              <div className='row'>
+                <div className='col-2'>Subtotal</div>
+                <div className='col-2 text-right'>R {itemsCost.toFixed(2)}</div>
+              </div>
+            </>
+          )}
         </div>
       </aside>
     </>
