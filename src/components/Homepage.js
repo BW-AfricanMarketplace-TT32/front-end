@@ -67,7 +67,7 @@ export default function Homepage() {
       <Navbar />
       <div className="bodyDiv">
         <div className="paraDiv">
-          <h1> African Marketplace</h1>
+          <h1>African Marketplace</h1>
           <div className="sections">
             <div className="about">
               <h2>About Us</h2>

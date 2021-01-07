@@ -53,16 +53,29 @@ function App() {
   /////// Add to cart function //////
   const onAdd = (product) => {
     // checks if the product exists
-    const exist = cartItems.find(newItem => newItem.id === product.id);
+    const exist = cartItems.find(newItem => newItem.id === product.id)
 
     // If item exists in cart, increment quantity accordingly using setCartItems 
     // while using spread operator to keep previous items in state
     if (exist) {
-      setCartItems(cartItems.map(newItem => newItem.id === product.id ? { ...exist, qty: exist.qty + 1 } : newItem))
+      setCartItems(
+        cartItems.map(newItem =>
+          newItem.id === product.id ? { ...exist, qty: exist.qty + 1 } : newItem))
     } else {
       // Else if item is not in cart, we concatenate using computed values
       // and set quantity of new item to 1
       setCartItems([...cartItems, { ...product, qty: 1 }])
+    }
+  }
+
+  const onDelete = (product) => {
+    const exist = cartItems.find((newItem) => newItem.id === product.id)
+    if (exist.qty === 1) {
+      setCartItems(cartItems.filter((newItem) => newItem.id !== product.id))
+    } else {
+      setCartItems(
+        cartItems.map((newItem) =>
+          newItem.id === product.id ? { ...exist, qty: exist.qty - 1 } : newItem))
     }
   }
 
@@ -177,7 +190,12 @@ function App() {
       <Switch>
 
         <Route path='/market'>
-          <Market onAdd={onAdd} products={products} cartItems={cartItems} />
+          <Market
+            onDelete={onDelete}
+            onAdd={onAdd}
+            products={products}
+            cartItems={cartItems}
+          />
         </Route>
 
         <Route path="/login">
