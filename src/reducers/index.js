@@ -1,11 +1,4 @@
-import {
-  SET_LOGGED_STATUS,
-  SET_USER,
-  SET_ITEMS,
-  SET_CATEGORIES,
-  ADD_ITEM,
-  EDIT_ITEM
-} from "../actions";
+import { SET_LOGGED_STATUS, SET_ITEMS, SET_CATEGORIES } from "../actions";
 
 const initialState = {
   user: null,
