@@ -47,6 +47,7 @@ function App() {
   const [registerDisabled, setRegisterDisabled] = useState(true);
 
   const { products } = data
+  const [cartItems, setCartItems] = useState([])
 
   //log-in form functions
   useEffect(() => {
@@ -159,7 +160,7 @@ function App() {
       <Switch>
 
         <Route path='/market'>
-          <Market products={products} />
+          <Market products={products} cartItems={cartItems} />
         </Route>
 
         <Route path="/login">

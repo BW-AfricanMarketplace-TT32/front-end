@@ -7,7 +7,7 @@ import '../assets/stylesheets/market.css'
 
 
 export default function Market(props) {
-  const { products } = props
+  const { products, cartItems } = props
 
   return (
     <>
@@ -25,7 +25,8 @@ export default function Market(props) {
           </div>
         </div>
 
-        <Cart />
+        {/* passing cartItems from props - Market received from App.js */}
+        <Cart cartItems={cartItems} />
       </main>
     </>
   )
