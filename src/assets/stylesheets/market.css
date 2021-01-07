@@ -36,6 +36,7 @@
   padding: 1rem;
   margin: 1rem;
   border-radius: 0.5rem;
+  flex-flow: wrap;
 }
 
 .row-center {
@@ -51,4 +52,18 @@ ul {
 /* Product Styles */
 .product img{
   max-height: 8rem;
+}
+
+/* Button styles */
+.btn {
+  font-size: 0.8rem;
+  padding: 0.2rem;
+  margin: 0.1rem;
+  border-radius: 0.5rem;
+  border: 0.1rem #404040 solid;
+  background-color: #f0c040;
+  width: 100%;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
 }

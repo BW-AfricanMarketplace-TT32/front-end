@@ -8,7 +8,7 @@ export default function Product(props) {
       <img src={product.imgURL} alt={product.name} />
       <h3>{product.name}</h3>
       <div>{product.price} ZAR</div>
-      <button>Add to cart</button>
+      <button className='btn'>Add to cart</button>
     </div>
   )
 }
