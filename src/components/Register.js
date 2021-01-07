@@ -40,7 +40,6 @@ export default function Register(props) {
                   type="radio"
                   name="admin_status"
                   value={1}
-                  // checked={values.admin_status === 1}
                   onChange={change}
                   placeholder="johndoe@email.com"
                 />
@@ -51,7 +50,6 @@ export default function Register(props) {
                   type="radio"
                   name="admin_status"
                   value={0}
-                  // checked={values.admin_status === 0}
                   onChange={change}
                   placeholder="secure password"
                 />
