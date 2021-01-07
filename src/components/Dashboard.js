@@ -9,8 +9,15 @@ const StyledDiv = styled.div`
   color: black;
   font-size: 2rem;
 
+  .welcome h2 {
+    color: white;
+    margin-left: 2rem;
+  }
+
+  .welcome {
+    color: white;
+  }
   .bigItemDiv {
-    border: 1px solid black;
     height: 90vh;
     display: flex;
     flex-wrap: wrap;
@@ -36,10 +43,6 @@ const StyledDiv = styled.div`
   }
 `;
 
-// function deleteItem(){
-//add this to an onClick for buttons
-// }
-
 function Dashboard(props) {
   useEffect(() => {
     axiosWithAuth()
@@ -49,13 +52,48 @@ function Dashboard(props) {
         console.log(res.data, "RESULTS  HERE!!!");
       })
       .catch(err => {
-        console.log(err, "NOPE TRY AGAIN");
+        console.log("DASHBOARD ERROR:", err);
       });
   }, []);
 
+  //this item gets added to onclick for add item form
+  // function addItem() {
+  //   axiosWithAuth()
+  //     .post("items", newItemFormValsVariable)
+  //     .then(res => {
+  //       console.log(res);
+  //       setFormVals({
+  //         name: "",
+  //         description: "",
+  //         price: ""
+  //       });
+  //     })
+  //     .catch(err => {
+  //       console.log("ADD ITEM ERROR:", err);
+  //     });
+  // }
+
+  function deleteItem(id) {
+    axiosWithAuth()
+      .delete(`items/${id}`, id)
+      .then(res => {
+        setItems(
+          props.items.filter(item => {
+            return item.item_id !== id;
+          })
+        );
+      })
+      .catch(err => {
+        console.log("DELETE ITEM ERROR:", err);
+      });
+  }
   return (
     <StyledDiv>
       <Navbar />
+      <div className="welcome">
+        <h2>Welcome back!</h2>
+        <p> Add item form goes here **** </p>{" "}
+      </div>
       <div className="bigItemDiv">
         {props.items.map(item => {
           return (
@@ -63,7 +101,14 @@ function Dashboard(props) {
               <p>{item.item_name}</p>
               <p>${item.item_price}</p>
               <button className="btn">Edit</button>
-              <button className="btn">Delete</button>
+              <button
+                className="btn"
+                onClick={e => {
+                  deleteItem(item.item_id);
+                }}
+              >
+                Delete
+              </button>
             </div>
           );
         })}
