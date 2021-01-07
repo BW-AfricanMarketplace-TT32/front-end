@@ -205,8 +205,4 @@ function Dashboard(props) {
   );
 }
 
-// const mapStateToProps = state => ({
-//   items: state.items
-// });
-
 export default connect(null, { setItems })(Dashboard);

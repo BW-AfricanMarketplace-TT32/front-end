@@ -24,7 +24,6 @@ function Items(props) {
             return item.item_id !== id;
           })
         );
-        window.location.reload();
       })
 
       .catch(err => {
