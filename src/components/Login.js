@@ -8,41 +8,43 @@ export default function Login(props) {
   return (
     <>
       <Navbar />
-      <div className="login-container">
-        <h1>Login</h1>
-        <form onSubmit={submit}>
-          <div className="input-container">
-            <i className="fas fa-user"></i>
-            <input
-              type="email"
-              name="email"
-              value={values.email}
-              onChange={change}
-              placeholder="johndoe@email.com"
-            />
-          </div>
+      <div className='bg-container'>
+        <div className="login-container">
+          <h1>Login</h1>
+          <form onSubmit={submit}>
+            <div className="input-container">
+              <i className="fas fa-user"></i>
+              <input
+                type="email"
+                name="email"
+                value={values.email}
+                onChange={change}
+                placeholder="johndoe@email.com"
+              />
+            </div>
 
-          <div className="input-container">
-            <i className="fas fa-lock"></i>
-            <input
-              type="password"
-              name="password"
-              value={values.password}
-              onChange={change}
-              placeholder="secure password"
-            />
-          </div>
+            <div className="input-container">
+              <i className="fas fa-lock"></i>
+              <input
+                type="password"
+                name="password"
+                value={values.password}
+                onChange={change}
+                placeholder="secure password"
+              />
+            </div>
 
-          {/* Errors */}
-          <div className="error">{errors.email}</div>
-          <div className="error">{errors.password}</div>
-          <input
-            type="submit"
-            value="Submit"
-            id="submitBtn"
-            disabled={disabled}
-          />
-        </form>
+            {/* Errors */}
+            <div className="error">{errors.email}</div>
+            <div className="error">{errors.password}</div>
+            <input
+              type="submit"
+              value="Submit"
+              id="submitBtn"
+              disabled={disabled}
+            />
+          </form>
+        </div>
       </div>
     </>
   );

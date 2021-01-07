@@ -8,8 +8,6 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background: url('../images/form_bg/sunset.png') no-repeat;
-  background-size: cover;
 }
 
 /* Form styles */
@@ -20,6 +18,12 @@ body {
   left: 50%;
   transform: translate(-50%, -100%);
   color: white;
+}
+
+.bg-container {
+  background: url('../images/form_bg/sunset.png') no-repeat;
+  height: 100vh;
+  font-family: sans-serif;
 }
 
 .login-container h1 {

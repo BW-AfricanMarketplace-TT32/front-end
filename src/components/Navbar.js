@@ -44,6 +44,9 @@ function Navbar(props) {
               <a href="/dashboard">Dashboard</a>
             </li>
             <li>
+              <a href="/market">Market</a>
+            </li>
+            <li>
               <a onClick={handleLogout}>Log Out</a>
             </li>
           </ul>
@@ -59,6 +62,9 @@ function Navbar(props) {
             </li>
             <li>
               <a href="/register">Register</a>
+            </li>
+            <li>
+              <a href="/market">Market</a>
             </li>
             <li>
               <a href="/login">Login</a>
