@@ -33,6 +33,7 @@ function Navbar(props) {
   };
 
   return (
+
     <div>
       {props.isLoggedIn ? (
         <StyledDiv>

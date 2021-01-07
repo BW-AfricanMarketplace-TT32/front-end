@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import PrivateRoute from "./auth/PrivateRoute";
 import Login from "./components/Login";
 import Homepage from "./components/Homepage";
+import Market from './components/Market.js'
 import Dashboard from "./components/Dashboard";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
@@ -153,6 +154,11 @@ function App() {
   return (
     <>
       <Switch>
+
+        <Route path='/market'>
+          <Market />
+        </Route>
+
         <Route path="/login">
           <Login
             values={loginValues}
