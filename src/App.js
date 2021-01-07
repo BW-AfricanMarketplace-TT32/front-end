@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import PrivateRoute from "./auth/PrivateRoute";
 import Login from "./components/Login";
 import Homepage from "./components/Homepage";
-import Market from './components/Market.js'
+import Market from "./components/Market.js";
 import Dashboard from "./components/Dashboard";
 import { useHistory } from "react-router-dom";
 import * as yup from "yup";
@@ -13,7 +13,7 @@ import axios from "axios";
 import registerschema from "./validation/registerschema";
 import { connect } from "react-redux";
 import { setLoggedStatus } from "./actions";
-import data from './data/data.js'
+import data from "./data/data.js";
 
 //login form initial
 const initialLoginValues = {
@@ -29,7 +29,7 @@ const initialLoginErrors = {
 const initialRegisterValues = {
   email: "",
   password: "",
-  admin_status: 0
+  admin_status: null
 };
 const initialRegisterErrors = {
   email: "",
@@ -47,37 +47,41 @@ function App() {
   const [registerDisabled, setRegisterDisabled] = useState(true);
 
   // for Market and Cart components
-  const { products } = data
-  const [cartItems, setCartItems] = useState([])
+  const { products } = data;
+  const [cartItems, setCartItems] = useState([]);
 
   /////// Add to cart function //////
-  const onAdd = (product) => {
+  const onAdd = product => {
     // checks if the product exists
-    const exist = cartItems.find(newItem => newItem.id === product.id)
+    const exist = cartItems.find(newItem => newItem.id === product.id);
 
-    // If item exists in cart, increment quantity accordingly using setCartItems 
+    // If item exists in cart, increment quantity accordingly using setCartItems
     // while using spread operator to keep previous items in state
     if (exist) {
       setCartItems(
         cartItems.map(newItem =>
-          newItem.id === product.id ? { ...exist, qty: exist.qty + 1 } : newItem))
+          newItem.id === product.id ? { ...exist, qty: exist.qty + 1 } : newItem
+        )
+      );
     } else {
       // Else if item is not in cart, we concatenate using computed values
       // and set quantity of new item to 1
-      setCartItems([...cartItems, { ...product, qty: 1 }])
+      setCartItems([...cartItems, { ...product, qty: 1 }]);
     }
-  }
+  };
 
-  const onDelete = (product) => {
-    const exist = cartItems.find((newItem) => newItem.id === product.id)
+  const onDelete = product => {
+    const exist = cartItems.find(newItem => newItem.id === product.id);
     if (exist.qty === 1) {
-      setCartItems(cartItems.filter((newItem) => newItem.id !== product.id))
+      setCartItems(cartItems.filter(newItem => newItem.id !== product.id));
     } else {
       setCartItems(
-        cartItems.map((newItem) =>
-          newItem.id === product.id ? { ...exist, qty: exist.qty - 1 } : newItem))
+        cartItems.map(newItem =>
+          newItem.id === product.id ? { ...exist, qty: exist.qty - 1 } : newItem
+        )
+      );
     }
-  }
+  };
 
   //log-in form functions
   useEffect(() => {
@@ -108,7 +112,6 @@ function App() {
       ...loginValues,
       [name]: value
     });
-    console.log(loginValues, "vals");
   };
 
   const submit = e => {
@@ -167,6 +170,7 @@ function App() {
 
   const registerSubmit = e => {
     e.preventDefault();
+    console.log("submitted info:", registerValues);
     axios
       .post(
         "https://bw-african-marketplace-tt32.herokuapp.com/auth/register",
@@ -188,8 +192,7 @@ function App() {
   return (
     <>
       <Switch>
-
-        <Route path='/market'>
+        <Route path="/market">
           <Market
             onDelete={onDelete}
             onAdd={onAdd}
