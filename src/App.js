@@ -13,6 +13,7 @@ import axios from "axios";
 import registerschema from "./validation/registerschema";
 import { connect } from "react-redux";
 import { setLoggedStatus } from "./actions";
+import data from './data/data.js'
 
 //login form initial
 const initialLoginValues = {
@@ -44,6 +45,8 @@ function App() {
   const [registerValues, setRegisterValues] = useState(initialRegisterValues);
   const [registerErrors, setRegisterErrors] = useState(initialRegisterErrors);
   const [registerDisabled, setRegisterDisabled] = useState(true);
+
+  const { products } = data
 
   //log-in form functions
   useEffect(() => {
@@ -156,7 +159,7 @@ function App() {
       <Switch>
 
         <Route path='/market'>
-          <Market />
+          <Market products={products} />
         </Route>
 
         <Route path="/login">
