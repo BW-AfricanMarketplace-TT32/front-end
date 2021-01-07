@@ -1,9 +1,14 @@
 import React from 'react'
 import Navbar from './Navbar'
 import Cart from '../components/Cart.js'
+import Product from '../components/Product.js'
 import '../assets/stylesheets/market.css'
 
+
+
 export default function Market(props) {
+  const { products, cartItems, onAdd, onDelete } = props
+
   return (
     <>
       <Navbar />
@@ -14,13 +19,14 @@ export default function Market(props) {
           <h1>Market</h1>
 
           <div className='row'>
-            <p>item 1</p>
-            <p>item 2</p>
-            <p>item 3</p>
+            {products.map((product) => (
+              <Product onDelete={onDelete} onAdd={onAdd} key={products.id} product={product}></Product>
+            ))}
           </div>
         </div>
 
-        <Cart />
+        {/* passing cartItems from props - Market received from App.js */}
+        <Cart onDelete={onDelete} onAdd={onAdd} cartItems={cartItems} />
       </main>
     </>
   )

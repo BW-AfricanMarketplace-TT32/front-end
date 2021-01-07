@@ -67,7 +67,7 @@ function Navbar(props) {
               <a href="/market">Market</a>
             </li>
             <li>
-              <a href="/login">Login</a>
+              <a onClick={handleLogout}>Log Out</a>
             </li>
           </ul>
         </StyledDiv>
