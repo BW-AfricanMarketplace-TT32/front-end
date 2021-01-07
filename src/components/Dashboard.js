@@ -111,7 +111,9 @@ function Dashboard(props) {
             return item.item_id !== id;
           })
         );
+        window.location.reload();
       })
+
       .catch(err => {
         console.log("DELETE ITEM ERROR:", err);
       });
