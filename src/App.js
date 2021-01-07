@@ -130,7 +130,7 @@ function App() {
         window.location.reload();
       })
       .catch(err => {
-        console.log(err, "ERROR SOMETHING IS WRONG");
+        console.log("ERROR ON LOGIN", err);
       });
   };
 
@@ -145,7 +145,6 @@ function App() {
     const name = e.target.name;
     const value = e.target.value;
 
-    console.log(e.target.value, "CHANGE VALUES");
     yup
       .reach(registerschema, name)
       .validate(value)
@@ -170,7 +169,6 @@ function App() {
 
   const registerSubmit = e => {
     e.preventDefault();
-    console.log("submitted info:", registerValues);
     axios
       .post(
         "https://bw-african-marketplace-tt32.herokuapp.com/auth/register",
@@ -185,7 +183,7 @@ function App() {
         history.push("/login");
       })
       .catch(err => {
-        console.log(err, "NOPE ERROR IN REGISTRATION");
+        console.log("NOPE ERROR IN REGISTRATION", err);
       });
   };
 

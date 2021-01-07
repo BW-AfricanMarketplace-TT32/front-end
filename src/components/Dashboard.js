@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { axiosWithAuth } from "../auth/axiosWithAuth";
 import Navbar from "./Navbar";
+import Items from "./Items";
+import Categories from "./Categories";
 import { connect } from "react-redux";
-import { setItems, setCategories } from "../actions";
+import { setItems } from "../actions";
 import styled from "styled-components";
 
 const StyledDiv = styled.div`
@@ -103,7 +105,7 @@ function Dashboard(props) {
     axiosWithAuth()
       .post("items", formValues)
       .then(res => {
-        setItems(props.items.push(res.data));
+        props.setItems(props.items.push(res.data));
         setFormValues({
           item_name: "",
           item_description: "",
@@ -111,161 +113,100 @@ function Dashboard(props) {
           location_id: 0,
           category_id: 0
         });
+        window.location.reload();
       })
       .catch(err => {
         console.log("ADD ITEM ERROR:", err);
       });
   };
 
-  useEffect(() => {
-    axiosWithAuth()
-      .get("items/categories/list")
-      .then(res => {
-        props.setCategories(res.data);
-      })
-      .catch(err => {
-        console.log(err, "GET REQUEST ERROR");
-      });
-
-    axiosWithAuth()
-      .get("items")
-      .then(res => {
-        props.setItems(res.data);
-      })
-      .catch(err => {
-        console.log("DASHBOARD ERROR:", err);
-      });
-  }, []);
-
-  function deleteItem(id) {
-    axiosWithAuth()
-      .delete(`items/${id}`)
-      .then(res => {
-        setItems(
-          props.items.filter(item => {
-            return item.item_id !== id;
-          })
-        );
-        window.location.reload();
-      })
-
-      .catch(err => {
-        console.log("DELETE ITEM ERROR:", err);
-      });
-  }
   return (
     <StyledDiv>
       <Navbar />
       <div className="welcome">
         <h4>Welcome back!</h4>
       </div>
+      <Categories />
+      <Items />
 
-      <h6>Categories available:</h6>
-      <div className="category">
-        {props.categories.map(category => {
-          return (
-            <div className="eachCategory" key={category.category_id}>
-              <p>Category {category.category_id}</p>
-              <p>{category.category_name}</p>
-            </div>
-          );
-        })}
-      </div>
-      <div>
-        <h6>Your Items:</h6>
-        <div className="bigItemDiv">
-          {props.items.map(item => {
-            return (
-              <div key={item.item_id} className="smallItemDiv">
-                <p>{item.item_name}</p>
-                <p>{item.item_description}</p>
-                <p>Category: {item.category_name}</p>
-                <p>${item.item_price}</p>
-                <button className="btn">Edit</button>
-                <button
-                  className="btn"
-                  onClick={e => {
-                    deleteItem(item.item_id);
-                  }}
-                >
-                  Delete
-                </button>
-              </div>
-            );
-          })}
-        </div>
-        <div className="addItem">
-          <h6>Add An Item:</h6>
-          <form onSubmit={onSubmit}>
-            <div className="input">
-              <label>
-                Item Name:
-                <br />
-                <input
-                  type="text"
-                  name="item_name"
-                  onChange={onChange}
-                  value={formValues.item_name}
-                />
-              </label>
-            </div>
-            <div className="input">
-              <label>
-                Description: <br />
-                <input
-                  type="text"
-                  name="item_description"
-                  onChange={onChange}
-                  value={formValues.item_description}
-                />
-              </label>
-            </div>
-            <div className="input">
-              <label>
-                Price: <br />
-                <input
-                  type="text"
-                  name="item_price"
-                  onChange={onChange}
-                  value={formValues.item_price}
-                />
-              </label>
-            </div>
-            <div className="input">
-              <label>
-                Location: <br />
-                <select name="location_id" value={formValues.location_id} onChange={onChange}>
-                  <option value="">- Select an option -</option>
-                  <option value={1}>1 - Mombasa</option>
-                  <option value={2}>2 - Nairobi</option>
-                  <option value={3}>3 - Kisii</option>
-                  <option value={4}>4 - Embu</option>
-                </select>
-              </label>
-            </div>
-            <div className="input">
-              <label>
-                Category: <br />
-                <select name="category_id" value={formValues.category_id} onChange={onChange}>
-                  <option value="">- Select an option -</option>
-                  <option value={1}>1 - Animal Products</option>
-                  <option value={2}>2 - Dry Goods</option>
-                  <option value={3}>3 - Fruits and Vegetables</option>
-                  <option value={4}>4 - Other</option>
-                </select>
-              </label>
-            </div>
-            <button type="submit">Add Item</button>
-          </form>
-        </div>
+      <div className="addItem">
+        <h6>Add An Item:</h6>
+        <form onSubmit={onSubmit}>
+          <div className="input">
+            <label>
+              Item Name:
+              <br />
+              <input
+                type="text"
+                name="item_name"
+                onChange={onChange}
+                value={formValues.item_name}
+              />
+            </label>
+          </div>
+          <div className="input">
+            <label>
+              Description: <br />
+              <input
+                type="text"
+                name="item_description"
+                onChange={onChange}
+                value={formValues.item_description}
+              />
+            </label>
+          </div>
+          <div className="input">
+            <label>
+              Price: <br />
+              <input
+                type="text"
+                name="item_price"
+                onChange={onChange}
+                value={formValues.item_price}
+              />
+            </label>
+          </div>
+          <div className="input">
+            <label>
+              Location: <br />
+              <select
+                name="location_id"
+                value={formValues.location_id}
+                onChange={onChange}
+              >
+                <option value="">- Select an option -</option>
+                <option value={1}>1 - Mombasa</option>
+                <option value={2}>2 - Nairobi</option>
+                <option value={3}>3 - Kisii</option>
+                <option value={4}>4 - Embu</option>
+              </select>
+            </label>
+          </div>
+          <div className="input">
+            <label>
+              Category: <br />
+              <select
+                name="category_id"
+                value={formValues.category_id}
+                onChange={onChange}
+              >
+                <option value="">- Select an option -</option>
+                <option value={1}>1 - Animal Products</option>
+                <option value={2}>2 - Dry Goods</option>
+                <option value={3}>3 - Fruits and Vegetables</option>
+                <option value={4}>4 - Other</option>
+              </select>
+            </label>
+          </div>
+          <button type="submit">Add Item</button>
+        </form>
       </div>
     </StyledDiv>
   );
 }
 
-const mapStateToProps = state => ({
-  categories: state.categories,
-  items: state.items
-});
+// const mapStateToProps = state => ({
+//   items: state.items
+// });
 
-export default connect(mapStateToProps, { setItems, setCategories })(Dashboard);
+export default connect(null, { setItems })(Dashboard);
