@@ -8,7 +8,7 @@ export default function Register(props) {
   return (
     <>
       <Navbar />
-      <div className='bg-container'>
+      <div className="bg-container">
         <div className="login-container">
           <h1>Register</h1>
           <form onSubmit={submit}>
@@ -42,7 +42,7 @@ export default function Register(props) {
                   value="1"
                   checked={true}
                   onChange={change}
-                  placeholder='johndoe@email.com'
+                  placeholder="johndoe@email.com"
                 />
                 Merchant
               </label>
@@ -53,32 +53,10 @@ export default function Register(props) {
                   value="0"
                   checked={true}
                   onChange={change}
-                  placeholder='secure password'
+                  placeholder="secure password"
                 />
+                Customer
               </label>
-            </div>
-
-            <div className='role'>
-              <label>
-                <input
-                  type='radio'
-                  name='admin'
-                  value='1'
-                  checked={values.admin === '1'}
-                  onChange={change}
-                />
-                  Merchant
-                </label>
-              <label>
-                <input
-                  type='radio'
-                  name='admin'
-                  value='0'
-                  checked={values.admin === '0'}
-                  onChange={change}
-                />
-                  Customer
-                </label>
             </div>
 
             {/* Errors */}

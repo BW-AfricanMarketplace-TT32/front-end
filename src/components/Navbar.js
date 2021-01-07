@@ -41,10 +41,10 @@ function Navbar(props) {
               <a href="/">Home</a>
             </li>
             <li>
-              <a href='/market'>Market</a>
+              <a href="/dashboard">Dashboard</a>
             </li>
             <li>
-              <a href="/dashboard">Dashboard</a>
+              <a href="/market">Market</a>
             </li>
             <li>
               <a onClick={handleLogout}>Log Out</a>
@@ -52,26 +52,26 @@ function Navbar(props) {
           </ul>
         </StyledDiv>
       ) : (
-          <StyledDiv>
-            <ul className="ul">
-              <li>
-                <a href="/">Home </a>
-              </li>
-              <li>
-                <a href='/market'>Market</a>
-              </li>
-              <li>
-                <a href="/dashboard">Dashboard</a>
-              </li>
-              <li>
-                <a href="/register">Register</a>
-              </li>
-              <li>
-                <a href="/login">Login</a>
-              </li>
-            </ul>
-          </StyledDiv>
-        )}
+        <StyledDiv>
+          <ul className="ul">
+            <li>
+              <a href="/">Home </a>
+            </li>
+            <li>
+              <a href="/dashboard">Dashboard</a>
+            </li>
+            <li>
+              <a href="/register">Register</a>
+            </li>
+            <li>
+              <a href="/market">Market</a>
+            </li>
+            <li>
+              <a onClick={handleLogout}>Log Out</a>
+            </li>
+          </ul>
+        </StyledDiv>
+      )}
     </div>
   );
 }
