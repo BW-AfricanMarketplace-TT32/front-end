@@ -59,7 +59,7 @@ ul {
   font-size: 0.8rem;
   padding: 0.2rem;
   margin: 0.1rem;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   border: 0.1rem #404040 solid;
   background-color: #f0c040;
   width: 100%;
@@ -74,7 +74,7 @@ button.add {
   width: 1.5rem;
 }
 
-button.remove {
+button.delete {
   background-color: #f04040;
   width: 1.5rem;
 }
