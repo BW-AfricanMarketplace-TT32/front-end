@@ -6,7 +6,7 @@ export default function Register(props) {
   const { submit, values, change, errors, disabled } = props;
 
   return (
-    <div>
+    <>
       <Navbar />
       <div className="login-container">
         <h1>Register</h1>
@@ -41,6 +41,7 @@ export default function Register(props) {
                 value="1"
                 checked={true}
                 onChange={change}
+                placeholder='johndoe@email.com'
               />
               Merchant
             </label>
@@ -51,23 +52,46 @@ export default function Register(props) {
                 value="0"
                 checked={true}
                 onChange={change}
+                placeholder='secure password'
               />
-              Customer
-            </label>
-          </div>
+            </div>
 
-          {/* Errors */}
-          <div className="error">{errors.email}</div>
-          <div className="error">{errors.password}</div>
-          <div className="error">{errors.admin}</div>
-          <input
-            type="submit"
-            value="Submit"
-            id="submitBtn"
-            disabled={disabled}
-          />
-        </form>
+            <div className='role'>
+              <label>
+                <input
+                  type='radio'
+                  name='admin'
+                  value='1'
+                  checked={values.admin === '1'}
+                  onChange={change}
+                />
+                Merchant
+              </label>
+              <label>
+                <input
+                  type='radio'
+                  name='admin'
+                  value='0'
+                  checked={values.admin === '0'}
+                  onChange={change}
+                />
+                Customer
+              </label>
+            </div>
+
+            {/* Errors */}
+            <div className="error">{errors.email}</div>
+            <div className="error">{errors.password}</div>
+            <div className="error">{errors.admin}</div>
+            <input
+              type="submit"
+              value="Submit"
+              id="submitBtn"
+              disabled={disabled}
+            />
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
