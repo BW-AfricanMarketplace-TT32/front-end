@@ -24,7 +24,7 @@ body {
   background-position: center;
   background-attachment: fixed;
   font-family: sans-serif;
-  background-color: red;
+  background-color: rgb(143, 19, 19);
 }
 
 .login-container h1 {

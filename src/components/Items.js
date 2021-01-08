@@ -32,16 +32,16 @@ function Items(props) {
   }
 
   return (
-    <div>
+    <div className='items_container'>
       <h6>Your Items:</h6>
       <div className="bigItemDiv">
         {props.items.map(item => {
           return (
             <div key={item.item_id} className="smallItemDiv">
-              <p>{item.item_name}</p>
+              <p className='title'>{item.item_name}</p>
               <p>{item.item_description}</p>
               <p>Category: {item.category_name}</p>
-              <p>${item.item_price}</p>
+              <p>{item.item_price} ZAR</p>
               <button className="btn">Edit</button>
               <button
                 className="btn"
