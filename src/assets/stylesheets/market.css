@@ -102,3 +102,10 @@ button.badge {
   border-radius: 0.5rem;
   font-size: 1rem;
 }
+
+.hero-container {
+  background-image: url('../images/form_bg/african_woman_original.png');
+  background-size: contain;
+  background-position: center;
+  position: relative;
+}

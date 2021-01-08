@@ -5,6 +5,7 @@ import George from "../assets/images/George.png";
 import Victoria from "../assets/images/Victoria.jpeg";
 import Leah from "../assets/images/Leah.jpeg";
 import Christina from "../assets/images/Christina.jpeg";
+import '../assets/stylesheets/market.css'
 
 const StyledDiv = styled.div`
   .bodyDiv {
@@ -29,8 +30,9 @@ const StyledDiv = styled.div`
     display: block;
     width: 100%;
     text-align: center;
-    padding: 2% 0 3% 0;
+    padding: 1.5% 0 1.5% 0;
     font-size: 36px;
+    margin: 0;
   }
   .paraDiv {
     display: flex;
@@ -70,6 +72,11 @@ const StyledDiv = styled.div`
     border-radius: 100%;
     padding: 5px;
   }
+
+  .hero-container {
+    padding: 300px;
+    background-repeat: no-repeat;
+  }
 `;
 
 export default function Homepage() {
@@ -77,6 +84,9 @@ export default function Homepage() {
     <StyledDiv>
       <Navbar />
       <div className="bodyDiv">
+        <div className='hero-container'>
+          {/* <img src={hero} alt='African woman' /> */}
+        </div>
         <h1>African Marketplace</h1>
         <div className="paraDiv">
           <div className="sections">
@@ -94,11 +104,11 @@ export default function Homepage() {
             </div>
           </div>
           <div className="team">
-              <h2>Our Team</h2>
-              <img src={Victoria} alt="avatar" />
-              <img src={Christina} alt="avatar" />
-              <img src={Leah} alt="avatar" />
-              <img src={George} alt="avatar" />
+            <h2>Our Team</h2>
+            <img src={Victoria} alt="avatar" />
+            <img src={Christina} alt="avatar" />
+            <img src={Leah} alt="avatar" />
+            <img src={George} alt="avatar" />
           </div>
         </div>
       </div>
