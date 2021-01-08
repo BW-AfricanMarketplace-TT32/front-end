@@ -10,10 +10,12 @@ const StyledDiv = styled.div`
 
   .ul {
     width: 95%;
+    margin: 0 auto;
     color: red;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     list-style: none;
+    padding: 0;
   }
 
   .ul a {
@@ -21,6 +23,9 @@ const StyledDiv = styled.div`
     color: white;
     text-decoration: none;
     cursor: pointer;
+  }
+  .ul li {
+    padding: 15px 0;
   }
 `;
 

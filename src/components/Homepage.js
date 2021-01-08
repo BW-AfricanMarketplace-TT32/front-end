@@ -11,6 +11,7 @@ const StyledDiv = styled.div`
     background-color: #b22222;
     color: white;
     min-height: 100vh;
+    min-width: 100vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -28,7 +29,7 @@ const StyledDiv = styled.div`
     display: block;
     width: 100%;
     text-align: center;
-    padding: 0 0 5% 0;
+    padding: 2% 0 3% 0;
     font-size: 36px;
   }
   .paraDiv {
@@ -44,6 +45,7 @@ const StyledDiv = styled.div`
     align-items: center;
     width: 40%;
     min-width: 400px;
+    max-width: 100%;
   }
   .sections {
     display: flex;

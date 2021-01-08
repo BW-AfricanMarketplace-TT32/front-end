@@ -1,28 +1,35 @@
 import React, { useState } from "react";
-import { axiosWithAuth } from "../auth/axiosWithAuth";
 import Navbar from "./Navbar";
 import Items from "./Items";
 import Categories from "./Categories";
 import { connect } from "react-redux";
 import { setItems } from "../actions";
 import styled from "styled-components";
+import AddItem from "./AddItem";
 
 const StyledDiv = styled.div`
   color: black;
-  background-color: #8f1313;
+  background-color: #b22222;
   font-size: 2rem;
 
+  h4 {
+    text-shadow: 2px 2px black;
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 0;
+    font-size: 32px;
+  }
   h6 {
     color: white;
     text-shadow: 1px 1px black;
-    margin-left: 2rem;
+    padding-left: 2rem;
+    max-width: 1150px;
+    margin: 20px auto;
   }
   .welcome h2 {
     color: white;
     margin-left: 2rem;
-  }
-  ul {
-    margin: 4px 0 14px 0;
   }
 
   .addItem {
@@ -48,6 +55,8 @@ const StyledDiv = styled.div`
     font-size: 1rem;
     display: flex;
     justify-content: center;
+    max-width: 1150px;
+    margin: 0 auto;
   }
 
   .eachCategory {
@@ -55,6 +64,11 @@ const StyledDiv = styled.div`
     font-size: 1rem;
     width: 20%;
     text-align: center;
+    background: rgba(0,0,0,.5);
+
+    :hover {
+      background: transparent;
+    }
   }
 
   .bigItemDiv {
@@ -62,26 +76,76 @@ const StyledDiv = styled.div`
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
+    max-width: 1150px;
+    margin: 0 auto;
+  }
+  .items_container {
+    margin-top: 5%;
   }
 
   .smallItemDiv {
     width: 20%;
     min-width: 200px;
     font-size: 1rem;
-    border: 1px solid red;
-    background-color: white;
-    opacity: 0.7;
+    border: 1px solid white;
+    background-color: rgba(0,0,0,.5);
     text-align: center;
     margin: 10px;
+    color: white;
+    padding: 5px;
+  }
+
+  .title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
   }
 
   .smallItemDiv .btn {
     opacity: 2;
     color: white;
-    background-color: black;
+    background-color: rgba(0,0,0,.8);
     padding: 0.5rem;
     font-size: 1rem;
     width: auto;
+    border: 1px solid rgba(0,0,0,.8);
+    font-weight: normal;
+
+    :hover {
+      border: 1px solid white;
+    }
+  }
+  .addItemBtn {
+    max-width: 1150px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 5px;
+    margin-top: 40px;
+  }
+  .addItemBtn button {
+    color: white;
+    background-color: rgba(0,0,0,.8);
+    padding: .5rem;
+    font-size: 1.2rem;
+    border: 1px solid rgba(0,0,0,.8);
+    font-weight: normal;
+    border-radius: 1rem;
+    text-align: center;
+    cursor: pointer;
+
+    :hover {
+      border: 1px solid white;
+    }
+  }
+
+  .addItem {
+    max-width: 1150px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .addItem h6 {
+    text-align: center;
+    margin-top: 40px;
   }
 `;
 
@@ -95,30 +159,7 @@ const initialFormValues = {
 
 function Dashboard(props) {
   const [formValues, setFormValues] = useState(initialFormValues);
-
-  const onChange = e => {
-    setFormValues({ ...formValues, [e.target.name]: e.target.value });
-  };
-
-  const onSubmit = e => {
-    e.preventDefault();
-    axiosWithAuth()
-      .post("items", formValues)
-      .then(res => {
-        props.setItems(props.items.push(res.data));
-        setFormValues({
-          item_name: "",
-          item_description: "",
-          item_price: 0,
-          location_id: 0,
-          category_id: 0
-        });
-        window.location.reload();
-      })
-      .catch(err => {
-        console.log("ADD ITEM ERROR:", err);
-      });
-  };
+  const [addItem, setAddItem] = useState(false);
 
   return (
     <StyledDiv>
@@ -128,78 +169,16 @@ function Dashboard(props) {
       </div>
       <Categories />
       <Items />
+      {!addItem && (
+        <div className='addItemBtn'>
+          <button onClick={()=> {setAddItem(true)}}>Add A New Item</button>
+        </div>
+      )}
+
+      {addItem && (<AddItem formValues={formValues} setFormValues={setFormValues} setAddItem={setAddItem}/>)}
 
       <div className="addItem">
-        <h6>Add An Item:</h6>
-        <form onSubmit={onSubmit}>
-          <div className="input">
-            <label>
-              Item Name:
-              <br />
-              <input
-                type="text"
-                name="item_name"
-                onChange={onChange}
-                value={formValues.item_name}
-              />
-            </label>
-          </div>
-          <div className="input">
-            <label>
-              Description: <br />
-              <input
-                type="text"
-                name="item_description"
-                onChange={onChange}
-                value={formValues.item_description}
-              />
-            </label>
-          </div>
-          <div className="input">
-            <label>
-              Price: <br />
-              <input
-                type="text"
-                name="item_price"
-                onChange={onChange}
-                value={formValues.item_price}
-              />
-            </label>
-          </div>
-          <div className="input">
-            <label>
-              Location: <br />
-              <select
-                name="location_id"
-                value={formValues.location_id}
-                onChange={onChange}
-              >
-                <option value="">- Select an option -</option>
-                <option value={1}>1 - Mombasa</option>
-                <option value={2}>2 - Nairobi</option>
-                <option value={3}>3 - Kisii</option>
-                <option value={4}>4 - Embu</option>
-              </select>
-            </label>
-          </div>
-          <div className="input">
-            <label>
-              Category: <br />
-              <select
-                name="category_id"
-                value={formValues.category_id}
-                onChange={onChange}
-              >
-                <option value="">- Select an option -</option>
-                <option value={1}>1 - Animal Products</option>
-                <option value={2}>2 - Dry Goods</option>
-                <option value={3}>3 - Fruits and Vegetables</option>
-                <option value={4}>4 - Other</option>
-              </select>
-            </label>
-          </div>
-          <button type="submit">Add Item</button>
-        </form>
+        
       </div>
     </StyledDiv>
   );
