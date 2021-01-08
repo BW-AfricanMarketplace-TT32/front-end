@@ -42,7 +42,6 @@ function Items(props) {
               <p>{item.item_description}</p>
               <p>Category: {item.category_name}</p>
               <p>${item.item_price}</p>
-              <button className="btn">Edit</button>
               <button
                 className="btn"
                 onClick={e => {
